@@ -20,6 +20,7 @@ package Easy;
  * For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
 */
 
+
 public class ReverseInteger {
     public int reverse(int x) {
         int result = 0;
