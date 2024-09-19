@@ -46,7 +46,7 @@ The number of nodes in the tree is in the range [1, 104].
  *     }
  * }
  */
-class Solution {
+class Solution1 {
     public boolean helper(TreeNode root, Integer min, Integer max) {
         if (root == null) {
             return true;
@@ -60,5 +60,25 @@ class Solution {
     }
     public boolean isValidBST(TreeNode root) {
         return helper(root, null, null);
+    }
+}
+
+//----------------------------------------------------------------------------------------------------------
+class Solution2 {
+    Integer prev = null;
+    public boolean isValidBST(TreeNode root) {
+        return helper(root);
+    }
+    public boolean helper(TreeNode node) {
+        if (node == null) {
+            return true;
+        }
+        boolean leftB = helper(node.left);
+        if (prev != null && node.val <= prev) {
+            return false;
+        }
+        prev = node.val;
+        boolean rightB = helper(node.right);
+        return leftB && rightB;
     }
 }
