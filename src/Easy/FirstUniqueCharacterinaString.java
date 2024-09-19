@@ -56,3 +56,19 @@ class Solution {
 
 
 // Ideal solution will be to use char arr[26] instead of hm and change its values by c-`a` and comparing it with the same to return the result
+
+
+class Solution2 {
+    public int firstUniqChar(String s) {
+        int[] arr = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            arr[s.charAt(i) - 'a'] = arr[s.charAt(i) - 'a'] + 1;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (arr[s.charAt(i) - 'a'] == 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
