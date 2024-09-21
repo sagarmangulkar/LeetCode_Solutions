@@ -79,3 +79,23 @@ class Solution {
         return res;
     }
 }
+
+//--------------------Iteration------------------------
+
+class Solution2 {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode curr = root;
+        while(curr != null || !stack.empty()) {
+            while (curr != null) {
+                result.add(curr.val);
+                stack.push(curr);
+                curr = curr.left;
+            }
+            curr = stack.pop();
+            curr = curr.right;
+        }
+        return result;
+    }
+}
