@@ -37,3 +37,20 @@ public class LongestCommonPrefix {
         return strs[0];
     }
 }
+
+
+class Solution2 {
+    public String longestCommonPrefix(String[] strs) {
+        String firstWord = strs[0];
+        int prefixLength = strs[0].length();
+        int noOfStrings = strs.length;
+        for(int j = 1; j < noOfStrings; j++) {
+            for(int i = 0; i < prefixLength; i++) {
+                if (i >= strs[j].length() || firstWord.charAt(i) != strs[j].charAt(i)) {
+                    prefixLength = i;
+                }
+            }
+        }
+        return firstWord.substring(0, prefixLength);
+    }
+}
