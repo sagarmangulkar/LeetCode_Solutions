@@ -53,3 +53,22 @@ class Solution {
         return maxDiff;
     }
 }
+
+
+//--------------------------------------------------------
+
+class Solution2 {
+    public int maxProfit(int[] prices) {
+        int len = prices.length;
+        if (len <= 1) {
+            return 0;
+        }
+        int maxDiff = Integer.MIN_VALUE;
+        int minStock = Integer.MAX_VALUE;
+        for (int i = 0; i < len; i++) {
+            minStock = Math.min(prices[i], minStock);
+            maxDiff = Math.max(prices[i] - minStock, maxDiff);
+        }
+        return maxDiff;
+    }
+}
