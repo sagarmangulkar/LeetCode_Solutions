@@ -72,3 +72,38 @@ public class RomanToInteger {
         return res;
     }
 }
+
+
+
+//----------------------------------------------------------
+//traverse start to end
+
+class Solution2 {
+    public int romanToInt(String s) {
+        int value = 0;
+        int len = s.length();
+        Map<Character, Integer> map = new HashMap<>();
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
+        
+        int curr;
+        int next;
+        for (int i = 0; i < len; i++) {
+            curr = map.get(s.charAt(i));
+            next = (i+1 < len) ? map.get(s.charAt(i+1)) : 0;
+            if (curr >= next) {
+                value += curr;    
+            }
+            else if (curr < next) {
+                value += next - curr;
+                i++; 
+            }
+        }
+        return value;
+    }
+}
