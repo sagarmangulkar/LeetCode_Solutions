@@ -53,30 +53,16 @@ class Solution {
         }
         freq.remove(maxFreqChar);
 
+        //rearrange alternatively
         for (Character ch : freq.keySet()) {
             int charCount = freq.get(ch);
-            int j = 0;
-            //even arrangement
-            for (j = 0; j < charCount; j++) {
+            while (charCount > 0) {
                 if (i >= output.length) {
-                    break;
+                    i = 1;
                 }
-                output[i] = (char)ch;
+                output[i] = ch;
                 i = i + 2;
-            }
-            //to change the character
-            if (j == charCount) {
-                continue;
-            }
-            //odd arrangement
-            i = 1;
-            charCount = freq.get(ch);
-            for (j = 0; j < charCount; j++) {
-                if (i >= output.length) {
-                    break;
-                }
-                output[i] = (char)ch;
-                i = i + 2;
+                charCount--;
             }
         }
         return String.valueOf(output);
