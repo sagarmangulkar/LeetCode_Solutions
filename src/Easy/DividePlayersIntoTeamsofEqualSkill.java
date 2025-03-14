@@ -38,6 +38,7 @@ skill.length is even.
 
 */
 
+//using Sorting
 class Solution {
     public long dividePlayers(int[] skill) {
         long chemistry = 0;
@@ -53,5 +54,34 @@ class Solution {
             }
         }
         return chemistry;
+    }
+}
+
+//using Freq HM like 2Sum
+class Solution {
+    public long dividePlayers(int[] skill) {
+        long chemistry = 0;
+        int n = skill.length;
+        int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+        for(int i = 0; i < n; i++) {
+            min = Math.min(min, skill[i]);
+            max = Math.max(max, skill[i]);
+        }
+        int targetSkillsPerTeam = min + max;
+        Map<Integer, Integer> freq = new HashMap<>();
+        for(int i = 0; i < n; i++) {
+            freq.put(skill[i], freq.getOrDefault(skill[i], 0) + 1);
+        }
+        for(int i = 0; i < n; i++) {
+            int teamMateSkill = targetSkillsPerTeam - skill[i];
+            if (freq.containsKey(teamMateSkill) && freq.get(teamMateSkill) > 0) {
+                freq.put(teamMateSkill, freq.get(teamMateSkill) - 1);
+                chemistry = chemistry + (skill[i] * teamMateSkill);
+            }
+            else {
+                return -1;
+            }
+        }
+        return chemistry/2;
     }
 }
