@@ -37,7 +37,7 @@ class Solution {
                 pairCount = pairCount + remainders[0];
             }
             else {
-                pairCount = pairCount + remainders[60 - (t % 60)];
+                pairCount = pairCount + remainders[60 - (t % 60)]; //we are checking for its subtracted remainder from 60 same like 2 SUM
             }
             remainders[t % 60]++;
         }
