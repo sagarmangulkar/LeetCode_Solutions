@@ -43,9 +43,11 @@ class MovingAverage {
     }
     
     public double next(int val) {
+        //remove
         if (queue.size() == this.size) {
             this.sum -= queue.poll();
         }
+        //add
         queue.add(val);
         this.sum += val;
         if (sum == 0) {
