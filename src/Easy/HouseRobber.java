@@ -48,3 +48,27 @@ class Solution {
         return helper(nums, index + 2, canRob, sum);
     }
 }
+
+// Using simple DP and Memoization
+
+class SolutionDP {
+    int[] nums;
+    Map<Integer, Integer> memo = new HashMap<>();
+    public int rob(int[] nums) {
+        this.nums = nums;
+        return dp(nums.length-1);
+    }
+    
+    public int dp(int i) {
+        if(i == 0) {
+            return nums[0];
+        }
+        if(i == 1) {
+            return Math.max(nums[1], nums[0]);
+        }
+        if (!memo.containsKey(i)) {
+            memo.put(i, Math.max(dp(i-2) + nums[i], dp(i-1)));
+        }
+        return memo.get(i);
+    }
+}
