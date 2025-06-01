@@ -24,6 +24,8 @@ All the numbers of nums are unique.
 
 */
 
+// Iterative
+
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> output = new ArrayList<>();
@@ -40,5 +42,25 @@ class Solution {
             }
         }
         return output;
+    }
+}
+
+
+// BackTracking
+
+class Solution1 {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> output = new ArrayList<>();
+        backTracking(nums, 0, new ArrayList<>(), output);
+        return output;
+    }
+
+    public void backTracking(int[] nums, int first, List<Integer> curr, List<List<Integer>> output) {
+        output.add(new ArrayList<>(curr));
+        for (int i = first; i < nums.length; i++) {
+            curr.add(nums[i]);
+            backTracking(nums, i+1, curr, output);
+            curr.remove(curr.size() - 1);
+        }
     }
 }
