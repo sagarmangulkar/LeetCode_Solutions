@@ -58,3 +58,23 @@ public class InvertBinaryTree {
         return root;
     }
 }
+
+
+//DFS
+
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        dfs(root);
+        return root;
+    }
+    public void dfs(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        dfs(node.left);
+        dfs(node.right);
+        TreeNode tempNode = node.left;
+        node.left = node.right;
+        node.right = tempNode;
+    }
+}
