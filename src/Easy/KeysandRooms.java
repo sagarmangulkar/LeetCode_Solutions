@@ -54,6 +54,11 @@ class Solution {
                 }
             }
             visitedSet.add(currRoom);
+
+            //Optional Optimization
+            if(visitedSet.size() == rooms.size()) {
+                return true;
+            }
         }
         return visitedSet.size() == rooms.size();
     }
@@ -61,5 +66,5 @@ class Solution {
 /*
 keyStack = [ ]
 visitedSet = [0 3 1]
-currRoom = 1
+key = 1
 */
