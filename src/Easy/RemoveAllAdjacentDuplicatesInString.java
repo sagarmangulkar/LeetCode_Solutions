@@ -48,3 +48,45 @@ class Solution {
      return new String(ch, 0, index + 1);
     }
 }
+
+//using stack
+class Solution2 {
+    public String removeDuplicates(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (char ch : s.toCharArray()) {
+            if (!stack.empty() && stack.peek() == ch) {
+                stack.pop();
+            }
+            else {
+                stack.add(ch);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        Iterator<Character> iterator = stack.iterator();
+        while (iterator.hasNext()) {
+            sb.append(iterator.next());
+        }
+        return sb.toString();
+    }
+}
+
+//using StringBuilder
+class Solution3 {
+    public String removeDuplicates(String s) {
+        StringBuilder sb = new StringBuilder(s);
+        int i = 0;
+        while (i < sb.length()) {
+            if (i < sb.length() - 1 && sb.charAt(i) == sb.charAt(i+1)) {
+                sb.deleteCharAt(i+1);
+                sb.deleteCharAt(i);
+                if (i > 0) {
+                    i--;
+                }
+            }
+            else {
+                i++;
+            }
+        }
+        return sb.toString();
+    }
+}
