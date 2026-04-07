@@ -42,3 +42,22 @@ class Solution {
         return third;
     }
 }
+
+//---- Top Down with Memoization DP
+
+class Solution {
+    Map<Integer, Integer> memo;
+    public int climbStairs(int n) {
+        memo = new HashMap<>();
+        return rec(n);
+    }
+    public int rec(int i) {
+        if(i == 2 || i == 1) {
+            return i;
+        }
+        if (!memo.containsKey(i)) {
+            memo.put(i, rec(i - 1) + rec(i - 2));
+        }
+        return memo.get(i);
+    }
+}
